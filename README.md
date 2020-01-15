@@ -1,19 +1,10 @@
-# promotion-games-snail
+# Promotion Games - Race
 
-## Project setup
-```
-npm install
-```
+###### *A basic website with a simple race animation using the following:*
+  - #### VueJS
+  - #### Greensock's GSAP
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+###### *You can also see:*
+  - #### SCSS
+  - #### Sweet Alert
+  - #### Lazy load

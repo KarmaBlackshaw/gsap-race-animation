@@ -26,8 +26,8 @@
     <center>Select a first class car.</center>
     <div class="bet-container">
       <div
-        class="bet bet-1"
-        :class="{ active: userBet !== 1 && userBet !== null }"
+        class="bet"
+        :class="{ 'bet-1': userBet === 1, 'inactive': userBet === null || userBet !== 1 }"
         @click="placeBet(1)"
       >
         <img
@@ -38,8 +38,8 @@
         />
       </div>
       <div
-        class="bet bet-2"
-        :class="{ active: userBet !== 2 && userBet !== null }"
+        class="bet"
+        :class="{ 'bet-2': userBet === 2, 'inactive': userBet === null || userBet !== 2 }"
         @click="placeBet(2)"
       >
         <img
@@ -50,8 +50,8 @@
         />
       </div>
       <div
-        class="bet bet-3"
-        :class="{ active: userBet !== 3 && userBet !== null }"
+        class="bet"
+        :class="{ 'bet-3': userBet === 3, 'inactive': userBet === null || userBet !== 3 }"
         @click="placeBet(3)"
       >
         <img
@@ -285,7 +285,7 @@ export default {
   }
 }
 
-.active {
+.inactive {
   background-color: rgba(44, 62, 80, 0.4) !important;
   border-color: rgba(44, 62, 80, 0.7) !important;
 }
