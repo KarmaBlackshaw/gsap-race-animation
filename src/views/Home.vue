@@ -2,55 +2,55 @@
   <div class="parent-layout">
     <div class="layout">
       <div class="title-bar">
-        <img src="@/assets/title.png" class="title-img" alt="" />
+        <img src="@/assets/title.png" class="title-bar__img" alt="" />
       </div>
 
       <div class="race-ground">
-        <div class="ground ground-upper" />
-        <div class="lane lane-1">
-          <div class="snail snail-1" />
+        <div class="ground ground--upper" />
+        <div class="lane lane--1">
+          <div class="snail snail--1" />
         </div>
-        <div class="lane lane-2">
-          <div class="snail snail-2" />
+        <div class="lane lane--2">
+          <div class="snail snail--2" />
         </div>
-        <div class="lane lane-3">
-          <div class="snail snail-3" />
+        <div class="lane lane--3">
+          <div class="snail snail--3" />
         </div>
-        <div class="ground ground-lower" />
+        <div class="ground ground--lower" />
       </div>
 
       <div class="action-bar">
-        <div class="bet-container action-bar-item">
+        <div class="bet-container action-bar__item">
           <div
-            class="bet bet-1"
+            class="bet bet--1"
             :class="{ active: userBet === 1 }"
             @click="placeBet(1)"
           >
             <img
               src="@/assets/bet-car-1.png"
-              class="bet-img"
+              class="bet__img"
               :width="userBet === 1 ? '30px' : '25px'"
             />
           </div>
           <div
-            class="bet bet-2"
+            class="bet bet--2"
             :class="{ active: userBet === 2 }"
             @click="placeBet(2)"
           >
             <img
               src="@/assets/bet-car-2.png"
-              class="bet-img"
+              class="bet__img"
               :width="userBet === 2 ? '30px' : '25px'"
             />
           </div>
           <div
-            class="bet bet-3"
+            class="bet bet--3"
             :class="{ active: userBet === 3 }"
             @click="placeBet(3)"
           >
             <img
               src="@/assets/bet-car-3.png"
-              class="bet-img"
+              class="bet__img"
               :width="userBet === 3 ? '30px' : '25px'"
             />
           </div>
@@ -58,7 +58,7 @@
 
         <button
           class="btn"
-          :class="{ 'btn-start': !isTweening, 'btn-disabled': isTweening }"
+          :class="{ 'btn--start': !isTweening, 'btn--disabled': isTweening }"
           @click="start"
         >
           START
@@ -181,19 +181,19 @@ export default {
 
       let obj = [
         {
-          element: '.snail-1',
+          element: '.snail--1',
           params: [
             { message: 'Snail One!', snail_id: 1, ease: this.getRandomEase() }
           ]
         },
         {
-          element: '.snail-2',
+          element: '.snail--2',
           params: [
             { message: 'Snail Two!', snail_id: 2, ease: this.getRandomEase() }
           ]
         },
         {
-          element: '.snail-3',
+          element: '.snail--3',
           params: [
             { message: 'Snail Three!', snail_id: 3, ease: this.getRandomEase() }
           ]
@@ -245,7 +245,7 @@ export default {
     justify-content: center;
     position: relative;
 
-    .title-img {
+    .title-bar__img {
       z-index: 2;
       height: 150px;
       margin-bottom: -30px;

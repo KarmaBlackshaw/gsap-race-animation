@@ -8,7 +8,7 @@ $btn-width: 200% - $bet-width;
   margin-bottom: 20px;
   transition: all 0.2s linear 0s;
 
-  .action-bar-item {
+  .action-bar__item {
     margin-right: 3px;
     margin-left: 3px;
   }
@@ -35,7 +35,7 @@ $btn-width: 200% - $bet-width;
       border-color: rgba(44, 62, 80, 0.7);
       transition: all 0.2s linear 0s;
 
-      &.bet-2 {
+      &.bet--2 {
         margin-right: 5px;
         margin-left: 5px;
       }
@@ -44,7 +44,7 @@ $btn-width: 200% - $bet-width;
         @include bg-shiny(252, 172, 1);
       }
 
-      .bet-img {
+      .bet__img {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -72,12 +72,12 @@ $btn-width: 200% - $bet-width;
     font-size: 2rem;
     transition: font-size 2s linear 0s;
 
-    &.btn-start {
+    &.btn--start {
       font-family: 'Black Han Sans', sans-serif;
       @include bg-shiny(252, 172, 1);
     }
 
-    &.btn-disabled {
+    &.btn--disabled {
       font-family: 'Black Han Sans', sans-serif;
       color: rgba(44, 62, 80, 1);
       @include bg-shiny(149, 165, 166);
