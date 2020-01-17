@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap');
+
+$bet-width: 150%;
+$btn-width: 200% - $bet-width;
+
+.action-bar {
+  display: flex;
+  margin-bottom: 20px;
+  transition: all 0.1s linear 0s;
+
+  .action-bar__item {
+    margin-right: 5px;
+  }
+
+  .bet-container {
+    transition: all 1s linear 0s;
+    display: flex;
+    border-radius: 10px;
+    background: #2e0a61;
+    padding: 5px;
+    width: 100%;
+    height: 100px;
+
+    .bet {
+      position: relative;
+      height: 100%;
+      width: $bet-width;
+      border-radius: 10px;
+      line-height: 50px;
+      text-align: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      position: relative;
+      background-color: rgba(44, 62, 80, 0.4);
+      border-color: rgba(44, 62, 80, 0.7);
+      transition: all 0.1s linear 0s;
+
+      &.bet--2 {
+        margin-right: 5px;
+        margin-left: 5px;
+      }
+
+      &.active {
+        @include bg-shiny(252, 172, 1);
+      }
+
+      .bet__img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    @media screen and (max-width: 560px) {
+      height: 80px;
+    }
+  }
+
+  .btn {
+    text-align: center;
+    text-decoration: none;
+    width: $btn-width;
+    border-radius: 10px;
+    position: relative;
+    display: inline-block;
+    padding: 0.618rem 1.618rem;
+    cursor: pointer;
+    color: #fff;
+    letter-spacing: 5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+    font-size: 2rem;
+    transition: font-size 1s linear 0s;
+
+    &.btn--start {
+      font-family: 'Black Han Sans', sans-serif;
+      @include bg-shiny(252, 172, 1);
+    }
+
+    &.btn--disabled {
+      font-family: 'Black Han Sans', sans-serif;
+      color: rgba(44, 62, 80, 1);
+      @include bg-shiny(149, 165, 166);
+    }
+
+    @media screen and (max-width: 420px) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 320px) {
+      font-size: 1rem;
+    }
+  }
+}

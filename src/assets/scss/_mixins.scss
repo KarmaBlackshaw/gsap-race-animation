@@ -1,0 +1,74 @@
+@mixin snail-item($url) {
+  background-image: url($url);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin padding($top, $right: $top, $bottom: $top, $left: $top) {
+  padding-top: $top;
+  padding-right: $right;
+  padding-bottom: $bottom;
+  padding-left: $left;
+}
+
+@mixin border-background($red, $green, $blue) {
+  border: 1px solid rgba($red, $green, $blue, 1);
+  background: rgba($red, $green, $blue, 0.7);
+}
+
+@mixin bg-shiny($red, $green, $blue) {
+  background: rgba($red, $green, $blue, 1) none repeat scroll 0% 0%;
+  border: 0.6px solid rgba($red, $green, $blue, 1);
+  box-shadow: 1px 0 rgba(255, 255, 255, 0.25),
+    0 2px 0 rgba(255, 255, 255, 0.25) inset, 0 0 0 rgba(0, 0, 0, 0.5) inset,
+    0 4.5rem 0 rgba(255, 255, 255, 0.08) inset,
+    0 -1.25rem 1.25rem rgba(0, 0, 0, 0.3) inset,
+    0 1.25rem 1.25rem rgba(255, 255, 255, 0.1) inset;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 1) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    padding: x 12px;
+    top: 0;
+    left: 15%;
+    height: 2px;
+    width: 40%;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5),
+      0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 0 0 rgba(0, 0, 0, 0.25) inset,
+      0 20px 0 rgba(255, 255, 255, 0.03) inset,
+      0 -20px 20px rgba(0, 0, 0, 0.15) inset,
+      0 20px 20px rgba(255, 255, 255, 0.05) inset;
+  }
+
+  &:active {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25),
+      0 1px 0 rgba(255, 255, 255, 0) inset, 0 0 5px rgba(0, 0, 0, 0.5) inset,
+      0 20px 0 rgba(255, 255, 255, 0.03) inset,
+      0 -20px 20px rgba(0, 0, 0, 0.15) inset,
+      0 20px 20px rgba(255, 255, 255, 0.05) inset;
+  }
+  &:active::before {
+    opacity: 0;
+  }
+  &:hover::before {
+    left: 45%;
+  }
+}

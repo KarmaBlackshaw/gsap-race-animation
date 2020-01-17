@@ -1,74 +1,82 @@
 <template>
-  <div class="layout">
-    <div class="title-bar">
-      <h1>TweenMax</h1>
-      <h1>{{ timer }}s</h1>
-    </div>
-    <div class="race-ground">
-      <div class="light-container">
-        <div class="light light-1" />
-        <div class="light light-2" />
-        <div class="light light-3" />
+  <div class="parent-layout">
+    <div class="layout">
+      <div class="title-bar">
+        <img src="@/assets/title.png" class="title--img" alt="" />
       </div>
 
-      <div class="lane">
-        <div class="snail snail-1">{{ userBet === 1 ? '' : '' }}</div>
+      <div class="race--ground">
+        <div class="ground ground--upper" />
+        <div class="lane lane--1">
+          <div class="snail snail--1" />
+        </div>
+        <div class="lane lane--2">
+          <div class="snail snail--2" />
+        </div>
+        <div class="lane lane--3">
+          <div class="snail snail--3" />
+        </div>
+        <div class="ground ground--lower" />
       </div>
-      <div class="lane">
-        <div class="snail snail-2">{{ userBet === 2 ? '' : '' }}</div>
+
+      <div class="action-bar">
+        <div class="bet-container action-bar__item">
+          <div
+            class="bet bet--1"
+            :class="{ active: userBet === 1 }"
+            @click="placeBet(1)"
+          >
+            <div class="bet__badge">1</div>
+            <img
+              src="@/assets/bet-car-1.png"
+              class="bet__img"
+              :width="userBet === 1 ? '30px' : '25px'"
+            />
+          </div>
+          <div
+            class="bet bet--2"
+            :class="{ active: userBet === 2 }"
+            @click="placeBet(2)"
+          >
+            <div class="bet__badge">1</div>
+            <img
+              src="@/assets/bet-car-2.png"
+              class="bet__img"
+              :width="userBet === 2 ? '30px' : '25px'"
+            />
+          </div>
+          <div
+            class="bet bet--3"
+            :class="{ active: userBet === 3 }"
+            @click="placeBet(3)"
+          >
+            <div class="bet__badge">1</div>
+            <img
+              src="@/assets/bet-car-3.png"
+              class="bet__img"
+              :width="userBet === 3 ? '30px' : '25px'"
+            />
+          </div>
+        </div>
+
+        <button
+          class="btn"
+          :class="{ 'btn--start': !isTweening, 'btn--disabled': isTweening }"
+          @click="start"
+        >
+          START
+        </button>
       </div>
-      <div class="lane">
-        <div class="snail snail-3">{{ userBet === 3 ? '' : '' }}</div>
+
+      <div class="footer">
+        <span class="footer__text footer__text--points">
+          5, 000
+        </span>
+        <span class="footer__text">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit
+        </span>
       </div>
     </div>
-
-    <hr />
-    <center>Select a first class car.</center>
-    <div class="bet-container">
-      <div
-        class="bet"
-        :class="{ 'bet-1': userBet === 1, 'inactive': userBet === null || userBet !== 1 }"
-        @click="placeBet(1)"
-      >
-        <img
-          src="@/assets/car1.png"
-          class="bet-img"
-          alt=""
-          :width="userBet === 1 ? '70px' : '50px'"
-        />
-      </div>
-      <div
-        class="bet"
-        :class="{ 'bet-2': userBet === 2, 'inactive': userBet === null || userBet !== 2 }"
-        @click="placeBet(2)"
-      >
-        <img
-          src="@/assets/car2.png"
-          class="bet-img"
-          alt=""
-          :width="userBet === 2 ? '70px' : '50px'"
-        />
-      </div>
-      <div
-        class="bet"
-        :class="{ 'bet-3': userBet === 3, 'inactive': userBet === null || userBet !== 3 }"
-        @click="placeBet(3)"
-      >
-        <img
-          src="@/assets/car3.png"
-          class="bet-img"
-          alt=""
-          :width="userBet === 3 ? '70px' : '50px'"
-        />
-      </div>
-    </div>
-
-    <button
-      class="btn btn-start"
-      v-text="'START'"
-      @click="start"
-      :disabled="isTweening"
-    />
   </div>
 </template>
 
@@ -79,34 +87,30 @@ import Swal from 'sweetalert2'
 export default {
   name: 'home',
 
-  data() {
-    return {
-      snail: null,
-      lane: null,
-      snails: null,
-      lanes: null,
-      snailWidth: null,
-      laneWidth: null,
-      finishLine: null,
-      heirarchy: 0,
-      tween: null,
-      userBet: null,
-      eases: [
-        'circ.inOut',
-        'expo.inOut',
-        'sine.inOut',
-        'power1.inOut',
-        'power2.inOut',
-        'power3.inOut',
-        'power4.inOut',
-        'slow(0.3, 0.4, false)'
-      ],
-      timer: 0,
-      timerInterval: null
-    }
-  },
+  data: () => ({
+    snail: null,
+    lane: null,
+    snails: null,
+    lanes: null,
+    snailWidth: null,
+    laneWidth: null,
+    finishLine: null,
+    heirarchy: 0,
+    tween: null,
+    userBet: null,
+    eases: [
+      'circ.inOut',
+      'expo.inOut',
+      'sine.inOut',
+      'power1.inOut',
+      'power2.inOut',
+      'power3.inOut',
+      'power4.inOut',
+      'slow(0.3, 0.4, false)'
+    ]
+  }),
 
-  mounted() {
+  async mounted() {
     this.tween = gsap
     this.lanes = document.getElementsByClassName('lane')
     this.snails = document.getElementsByClassName('snail')
@@ -127,13 +131,6 @@ export default {
     reset() {
       this.heirarchy = 0
       this.tween.set(this.snails, { x: 0 })
-      this.timer = 0
-    },
-
-    startTimer() {
-      this.timerInterval = setInterval(() => {
-        this.timer++
-      }, 1000)
     },
 
     getRandomFinishDuration: () => Math.random() * 10 + 5,
@@ -166,6 +163,8 @@ export default {
     },
 
     start() {
+      if (this.isTweening) return
+
       this.reset()
 
       if (this.userBet === null) {
@@ -179,26 +178,25 @@ export default {
 
       let obj = [
         {
-          element: '.snail-1',
+          element: '.snail--1',
           params: [
             { message: 'Snail One!', snail_id: 1, ease: this.getRandomEase() }
           ]
         },
         {
-          element: '.snail-2',
+          element: '.snail--2',
           params: [
             { message: 'Snail Two!', snail_id: 2, ease: this.getRandomEase() }
           ]
         },
         {
-          element: '.snail-3',
+          element: '.snail--3',
           params: [
             { message: 'Snail Three!', snail_id: 3, ease: this.getRandomEase() }
           ]
         }
       ]
 
-      this.startTimer()
       obj.forEach(({ element, params }) =>
         this.tween.to(element, {
           duration: this.getRandomFinishDuration(),
@@ -214,131 +212,69 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// Mixins
-@mixin snail-item($url) {
-  background-image: url($url);
-  background-size: contain;
-  background-repeat: no-repeat;
-}
+@import '../assets/scss/mixins';
+@import '../assets/scss/race-ground';
+@import '../assets/scss/action-bar';
+@import '../assets/scss/vars';
 
-@mixin padding($top, $right: $top, $bottom: $top, $left: $top) {
-  padding-top: $top;
-  padding-right: $right;
-  padding-bottom: $bottom;
-  padding-left: $left;
-}
-
-@mixin border-background($red, $green, $blue) {
-  border: 1px solid rgba($red, $green, $blue, 1);
-  background: rgba($red, $green, $blue, 0.7);
-}
-
-// Styles
-.race-ground {
-  background: rgba(250, 211, 144, 1);
-  @include padding(1%, 1%, 5%, 1%);
-
-  .lane {
-    height: 100px;
-    line-height: 100px;
-    background: rgba(44, 62, 80, 1);
-    margin: 5px;
-    @include padding(5px, 0, 5px, 0);
-
-    .snail {
-      height: 98px;
-      width: 150px;
-      line-height: 98px;
-      text-align: center;
-      background-position: center;
-
-      &.snail-1 { @include snail-item('../assets/car1.png'); }
-      &.snail-2 { @include snail-item('../assets/car2.png'); }
-      &.snail-3 { @include snail-item('../assets/car3.png'); }
-    }
-  }
-}
-
-.light-container {
+.parent-layout {
+  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
-
-  .light {
-    width: 40px;
-    text-align: center;
-    height: 40px;
-    background: #000;
-    margin: 2px;
-    border-radius: 50%;
-
-    &.light-3 {
-      background: red;
-    }
-
-    &.light-2 {
-      background: orange;
-    }
-
-    &.light-1 {
-      background: green;
-    }
-  }
+  user-select: none !important;
 }
-
-.inactive {
-  background-color: rgba(44, 62, 80, 0.4) !important;
-  border-color: rgba(44, 62, 80, 0.7) !important;
-}
-
-.title-bar {
-  display: flex;
-  justify-content: space-between;
-}
-
 .layout {
   margin-left: 10%;
   margin-right: 10%;
-  margin-top: 10%;
-}
+  margin-top: 5%;
+  position: relative;
+  max-width: 490px;
+  background-size: contain;
+  padding: 2%;
+  background-color: #531789;
+  background-image: url('../assets/bg-01.png');
+  background-repeat: no-repeat;
 
-.bet-container {
-  display: flex;
-
-  .bet {
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    margin: 5px;
-    text-align: center;
-    font-size: 1.5rem;
-    cursor: pointer;
+  .title-bar {
+    display: flex;
+    justify-content: center;
     position: relative;
 
-    .bet-img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    .title--img {
+      z-index: 2;
+      height: 150px;
+      margin-bottom: -30px;
+      margin-top: 0;
+      transition: all 1s linear 0s;
+
+      @media screen and (max-width: 560px) {
+        margin-bottom: -20px;
+      }
+
+      @media screen and (max-width: 420px) {
+        height: 80px;
+      }
     }
-
-    &.bet-1 { @include border-background(229, 142, 38) }
-
-    &.bet-2 { @include border-background(74, 105, 189) }
-
-    &.bet-3 { @include border-background(229, 80, 57) }
   }
-}
 
-.btn {
-  width: 100%;
-  border-radius: 5px;
-  cursor: pointer;
-  @include padding(10px);
+  .footer {
+    background: #3a0f54;
+    border-radius: 10px;
+    padding: 10px;
 
-  &.btn-start {
-    border: 1px solid rgba(12, 36, 97, 1);
-    background: rgba(12, 36, 97, 0.7);
-    color: white;
+    .footer__text {
+      color: #efe9f2;
+
+      &.footer__text--points {
+        color: rgb(252, 172, 1);
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-right: 5px;
+      }
+    }
   }
 }
 </style>
