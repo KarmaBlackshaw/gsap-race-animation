@@ -2,58 +2,55 @@
   <div class="parent-layout">
     <div class="layout">
       <div class="title-bar">
-        <img src="@/assets/title.png" class="title--img" alt="" />
+        <img src="@/assets/title.png" class="title-img" alt="" />
       </div>
 
-      <div class="race--ground">
-        <div class="ground ground--upper" />
-        <div class="lane lane--1">
-          <div class="snail snail--1" />
+      <div class="race-ground">
+        <div class="ground ground-upper" />
+        <div class="lane lane-1">
+          <div class="snail snail-1" />
         </div>
-        <div class="lane lane--2">
-          <div class="snail snail--2" />
+        <div class="lane lane-2">
+          <div class="snail snail-2" />
         </div>
-        <div class="lane lane--3">
-          <div class="snail snail--3" />
+        <div class="lane lane-3">
+          <div class="snail snail-3" />
         </div>
-        <div class="ground ground--lower" />
+        <div class="ground ground-lower" />
       </div>
 
       <div class="action-bar">
-        <div class="bet-container action-bar__item">
+        <div class="bet-container action-bar-item">
           <div
-            class="bet bet--1"
+            class="bet bet-1"
             :class="{ active: userBet === 1 }"
             @click="placeBet(1)"
           >
-            <div class="bet__badge">1</div>
             <img
               src="@/assets/bet-car-1.png"
-              class="bet__img"
+              class="bet-img"
               :width="userBet === 1 ? '30px' : '25px'"
             />
           </div>
           <div
-            class="bet bet--2"
+            class="bet bet-2"
             :class="{ active: userBet === 2 }"
             @click="placeBet(2)"
           >
-            <div class="bet__badge">1</div>
             <img
               src="@/assets/bet-car-2.png"
-              class="bet__img"
+              class="bet-img"
               :width="userBet === 2 ? '30px' : '25px'"
             />
           </div>
           <div
-            class="bet bet--3"
+            class="bet bet-3"
             :class="{ active: userBet === 3 }"
             @click="placeBet(3)"
           >
-            <div class="bet__badge">1</div>
             <img
               src="@/assets/bet-car-3.png"
-              class="bet__img"
+              class="bet-img"
               :width="userBet === 3 ? '30px' : '25px'"
             />
           </div>
@@ -61,20 +58,26 @@
 
         <button
           class="btn"
-          :class="{ 'btn--start': !isTweening, 'btn--disabled': isTweening }"
+          :class="{ 'btn-start': !isTweening, 'btn-disabled': isTweening }"
           @click="start"
         >
           START
         </button>
       </div>
 
-      <div class="footer">
-        <span class="footer__text footer__text--points">
-          5, 000
-        </span>
-        <span class="footer__text">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit
-        </span>
+      <div class="marquee-container">
+        <marquee>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste mollitia
+          officia voluptates cum ullam est alias excepturi incidunt! Magnam
+          obcaecati consequuntur magni aliquam temporibus natus eligendi nihil,
+          rem inventore sed error accusamus possimus vero odit sint ratione
+          minus veniam, ipsa voluptates? Maiores fugiat, necessitatibus officiis
+          officia, repellat nam libero vitae consectetur laboriosam eaque
+          impedit modi. Dolorem tenetur minima optio aliquid incidunt laborum
+          odit tempore. Iusto magnam, eligendi fugiat iste pariatur minima
+          voluptas consequuntur reprehenderit deserunt maiores. Dolore magnam
+          corrupti sunt
+        </marquee>
       </div>
     </div>
   </div>
@@ -110,7 +113,7 @@ export default {
     ]
   }),
 
-  async mounted() {
+  mounted() {
     this.tween = gsap
     this.lanes = document.getElementsByClassName('lane')
     this.snails = document.getElementsByClassName('snail')
@@ -178,19 +181,19 @@ export default {
 
       let obj = [
         {
-          element: '.snail--1',
+          element: '.snail-1',
           params: [
             { message: 'Snail One!', snail_id: 1, ease: this.getRandomEase() }
           ]
         },
         {
-          element: '.snail--2',
+          element: '.snail-2',
           params: [
             { message: 'Snail Two!', snail_id: 2, ease: this.getRandomEase() }
           ]
         },
         {
-          element: '.snail--3',
+          element: '.snail-3',
           params: [
             { message: 'Snail Three!', snail_id: 3, ease: this.getRandomEase() }
           ]
@@ -215,7 +218,6 @@ export default {
 @import '../assets/scss/mixins';
 @import '../assets/scss/race-ground';
 @import '../assets/scss/action-bar';
-@import '../assets/scss/vars';
 
 .parent-layout {
   position: relative;
@@ -243,7 +245,7 @@ export default {
     justify-content: center;
     position: relative;
 
-    .title--img {
+    .title-img {
       z-index: 2;
       height: 150px;
       margin-bottom: -30px;
@@ -260,20 +262,12 @@ export default {
     }
   }
 
-  .footer {
-    background: #3a0f54;
-    border-radius: 10px;
-    padding: 10px;
-
-    .footer__text {
-      color: #efe9f2;
-
-      &.footer__text--points {
-        color: rgb(252, 172, 1);
-        font-weight: bold;
-        letter-spacing: 1px;
-        margin-right: 5px;
-      }
+  .marquee-container {
+    marquee {
+      background: #3a0f54;
+      color: #fff;
+      border-radius: 10px;
+      @include padding(10px, 0, 10px, 0);
     }
   }
 }
