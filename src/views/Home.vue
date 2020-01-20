@@ -65,19 +65,9 @@
         </button>
       </div>
 
-      <div class="marquee-container">
-        <marquee>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste mollitia
-          officia voluptates cum ullam est alias excepturi incidunt! Magnam
-          obcaecati consequuntur magni aliquam temporibus natus eligendi nihil,
-          rem inventore sed error accusamus possimus vero odit sint ratione
-          minus veniam, ipsa voluptates? Maiores fugiat, necessitatibus officiis
-          officia, repellat nam libero vitae consectetur laboriosam eaque
-          impedit modi. Dolorem tenetur minima optio aliquid incidunt laborum
-          odit tempore. Iusto magnam, eligendi fugiat iste pariatur minima
-          voluptas consequuntur reprehenderit deserunt maiores. Dolore magnam
-          corrupti sunt
-        </marquee>
+      <div class="points-container">
+        <span class="points-container__text-points">5,000</span>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto vitae
       </div>
     </div>
   </div>
@@ -231,7 +221,6 @@ export default {
 .layout {
   margin-left: 10%;
   margin-right: 10%;
-  margin-top: 5%;
   position: relative;
   max-width: 490px;
   background-size: contain;
@@ -262,12 +251,17 @@ export default {
     }
   }
 
-  .marquee-container {
-    marquee {
-      background: #3a0f54;
-      color: #fff;
-      border-radius: 10px;
-      @include padding(10px, 0, 10px, 0);
+  .points-container {
+    background-color: #2e0a61;
+    padding: 10px;
+    border-radius: 10px;
+    color: #e5dee7;
+    font-size: 1.1rem;
+
+    .points-container__text-points {
+      color: #fdbc00;
+      font-weight: 900;
+      letter-spacing: 1px;
     }
   }
 }
