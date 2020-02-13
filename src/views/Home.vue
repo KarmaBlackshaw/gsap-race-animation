@@ -1,8 +1,8 @@
 <template>
   <div class="parent-layout">
-    <div class="layout">
-      <div class="title-bar">
-        <img src="@/assets/title.png" class="title-bar__img" alt="" />
+    <div class="game-layout">
+      <div class="game-layout--title-bar">
+        <img src="@/assets/title.png" class="game-layout--title-bar__img" alt />
       </div>
 
       <div class="race-ground">
@@ -21,33 +21,21 @@
 
       <div class="action-bar">
         <div class="bet-container action-bar__item">
-          <div
-            class="bet bet--1"
-            :class="{ active: userBet === 1 }"
-            @click="placeBet(1)"
-          >
+          <div class="bet bet--1" :class="{ active: userBet === 1 }" @click="placeBet(1)">
             <img
               src="@/assets/bet-car-1.png"
               class="bet__img"
               :width="userBet === 1 ? '30px' : '25px'"
             />
           </div>
-          <div
-            class="bet bet--2"
-            :class="{ active: userBet === 2 }"
-            @click="placeBet(2)"
-          >
+          <div class="bet bet--2" :class="{ active: userBet === 2 }" @click="placeBet(2)">
             <img
               src="@/assets/bet-car-2.png"
               class="bet__img"
               :width="userBet === 2 ? '30px' : '25px'"
             />
           </div>
-          <div
-            class="bet bet--3"
-            :class="{ active: userBet === 3 }"
-            @click="placeBet(3)"
-          >
+          <div class="bet bet--3" :class="{ active: userBet === 3 }" @click="placeBet(3)">
             <img
               src="@/assets/bet-car-3.png"
               class="bet__img"
@@ -60,10 +48,7 @@
           class="btn"
           :class="isTweening ? 'btn--disabled' : 'btn--start'"
           @click="start"
-        >
-          START
-        </button>
-        <!-- <button class="btn"><span>START</span></button> -->
+        >START</button>
       </div>
 
       <div class="points-container">
@@ -75,11 +60,11 @@
 </template>
 
 <script>
-import { TweenMax, gsap } from 'gsap'
-import Swal from 'sweetalert2'
+import { TweenMax, gsap } from "gsap";
+import Swal from "sweetalert2";
 
 export default {
-  name: 'home',
+  name: "home",
 
   data: () => ({
     snail: null,
@@ -93,109 +78,108 @@ export default {
     tween: null,
     userBet: null,
     eases: [
-      'circ.inOut',
-      'expo.inOut',
-      'sine.inOut',
-      'power1.inOut',
-      'power2.inOut',
-      'power3.inOut',
-      'power4.inOut',
-      'slow(0.3, 0.4, false)'
+      "circ.inOut",
+      "expo.inOut",
+      "sine.inOut",
+      "power1.inOut",
+      "power2.inOut",
+      "power3.inOut",
+      "power4.inOut",
+      "slow(0.3, 0.4, false)"
     ]
   }),
 
   mounted() {
-    this.refreshSizes()
-    window.addEventListener('resize', this.refreshSizes)
+    this.refreshSizes();
+    window.addEventListener("resize", this.refreshSizes);
   },
 
   computed: {
-    isTweening() {
-      return this.snails ? this.tween.isTweening(this.snails) : false
-    }
+    isTweening: vm => (vm.snails ? vm.tween.isTweening(vm.snails) : false)
   },
 
   methods: {
     refreshSizes() {
-      this.lanes = null
-      this.snails = null
+      this.lanes = null;
+      this.snails = null;
 
-      this.tween = gsap
-      this.lanes = document.getElementsByClassName('lane')
-      this.snails = document.getElementsByClassName('snail')
-      this.lane = this.lanes[0]
-      this.snail = this.snails[0]
-      this.laneWidth = this.lane.offsetWidth
-      this.snailWidth = this.snail.offsetWidth
-      this.finishLine = this.laneWidth - this.snailWidth
+      this.tween = gsap;
+      this.lanes = document.getElementsByClassName("lane");
+      this.snails = document.getElementsByClassName("snail");
+      this.lane = this.lanes[0];
+      this.snail = this.snails[0];
+      this.laneWidth = this.lane.offsetWidth;
+      this.snailWidth = this.snail.offsetWidth;
+      this.finishLine = this.laneWidth - this.snailWidth;
     },
+
     reset() {
-      this.heirarchy = 0
-      this.tween.set(this.snails, { x: 0 })
+      this.heirarchy = 0;
+      this.tween.set(this.snails, { x: 0 });
     },
 
     getRandomFinishDuration: () => Math.random() * 10 + 5,
 
     getRandomEase() {
-      return this.eases[Math.floor(Math.random() * this.eases.length)]
+      return this.eases[Math.floor(Math.random() * this.eases.length)];
     },
 
     placeBet(bet) {
-      return !this.isTweening ? (this.userBet = bet) : false
+      return !this.isTweening ? (this.userBet = bet) : false;
     },
 
-    async completeRace({ snail_id, message }) {
-      let win = this.userBet === snail_id
+    completeRace({ snail_id, message }) {
+      let win = this.userBet === snail_id;
 
       if (this.heirarchy === 0) {
         Swal.fire({
-          title: win ? 'Congratulations' : 'You Lost',
+          title: win ? "Congratulations" : "You Lost",
           text: win
             ? `Your snail won ${Math.floor(Math.random() * 500)}!`
-            : 'Try again!',
-          icon: win ? 'info' : 'question',
-          confirmButtonText: 'Cool'
-        })
+            : "Try again!",
+          icon: win ? "info" : "question",
+          confirmButtonText: "Cool"
+        });
       }
 
-      this.userBet = null
-      this.heirarchy++
+      this.userBet = null;
+      this.heirarchy++;
     },
 
     start() {
-      if (this.isTweening) return
+      if (this.isTweening) return;
 
-      this.reset()
+      this.reset();
 
       if (this.userBet === null) {
         return Swal.fire({
-          title: 'Oops!',
-          text: 'Please place your bet first!',
-          icon: 'error',
-          confirmButtonText: 'Okay'
-        })
+          title: "Oops!",
+          text: "Please place your bet first!",
+          icon: "error",
+          confirmButtonText: "Okay"
+        });
       }
 
       let obj = [
         {
-          element: '.snail--1',
+          element: ".snail--1",
           params: [
-            { message: 'Snail One!', snail_id: 1, ease: this.getRandomEase() }
+            { message: "Snail One!", snail_id: 1, ease: this.getRandomEase() }
           ]
         },
         {
-          element: '.snail--2',
+          element: ".snail--2",
           params: [
-            { message: 'Snail Two!', snail_id: 2, ease: this.getRandomEase() }
+            { message: "Snail Two!", snail_id: 2, ease: this.getRandomEase() }
           ]
         },
         {
-          element: '.snail--3',
+          element: ".snail--3",
           params: [
-            { message: 'Snail Three!', snail_id: 3, ease: this.getRandomEase() }
+            { message: "Snail Three!", snail_id: 3, ease: this.getRandomEase() }
           ]
         }
-      ]
+      ];
 
       obj.forEach(({ element, params }) =>
         this.tween.to(element, {
@@ -205,16 +189,16 @@ export default {
           onComplete: this.completeRace,
           onCompleteParams: params
         })
-      )
+      );
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/mixins';
-@import '../assets/scss/race-ground';
-@import '../assets/scss/action-bar';
+@import "../assets/scss/mixins";
+@import "../assets/scss/race-ground";
+@import "../assets/scss/action-bar";
 
 .parent-layout {
   position: relative;
@@ -225,7 +209,7 @@ export default {
   justify-content: center;
   user-select: none !important;
 }
-.layout {
+.game-layout {
   margin-left: 10%;
   margin-right: 10%;
   position: relative;
@@ -233,15 +217,15 @@ export default {
   background-size: contain;
   padding: 2%;
   background-color: #531789;
-  background-image: url('../assets/bg-01.png');
+  background-image: url("../assets/bg-01.png");
   background-repeat: no-repeat;
 
-  .title-bar {
+  .game-layout--title-bar {
     display: flex;
     justify-content: center;
     position: relative;
 
-    .title-bar__img {
+    .game-layout--title-bar__img {
       z-index: 2;
       height: 150px;
       margin-bottom: -30px;
