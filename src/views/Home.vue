@@ -58,11 +58,12 @@
 
         <button
           class="btn"
-          :class="{ 'btn--start': !isTweening, 'btn--disabled': isTweening }"
+          :class="isTweening ? 'btn--disabled' : 'btn--start'"
           @click="start"
         >
           START
         </button>
+        <!-- <button class="btn"><span>START</span></button> -->
       </div>
 
       <div class="points-container">
@@ -104,14 +105,8 @@ export default {
   }),
 
   mounted() {
-    this.tween = gsap
-    this.lanes = document.getElementsByClassName('lane')
-    this.snails = document.getElementsByClassName('snail')
-    this.lane = this.lanes[0]
-    this.snail = this.snails[0]
-    this.laneWidth = this.lane.offsetWidth
-    this.snailWidth = this.snail.offsetWidth
-    this.finishLine = this.laneWidth - this.snailWidth
+    this.refreshSizes()
+    window.addEventListener('resize', this.refreshSizes)
   },
 
   computed: {
@@ -121,6 +116,19 @@ export default {
   },
 
   methods: {
+    refreshSizes() {
+      this.lanes = null
+      this.snails = null
+
+      this.tween = gsap
+      this.lanes = document.getElementsByClassName('lane')
+      this.snails = document.getElementsByClassName('snail')
+      this.lane = this.lanes[0]
+      this.snail = this.snails[0]
+      this.laneWidth = this.lane.offsetWidth
+      this.snailWidth = this.snail.offsetWidth
+      this.finishLine = this.laneWidth - this.snailWidth
+    },
     reset() {
       this.heirarchy = 0
       this.tween.set(this.snails, { x: 0 })
@@ -138,7 +146,6 @@ export default {
 
     async completeRace({ snail_id, message }) {
       let win = this.userBet === snail_id
-      clearInterval(this.timerInterval)
 
       if (this.heirarchy === 0) {
         Swal.fire({

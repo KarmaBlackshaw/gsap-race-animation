@@ -9,8 +9,7 @@ $btn-width: 200% - $bet-width;
   transition: all 0.2s linear 0s;
 
   .action-bar__item {
-    margin-right: 3px;
-    margin-left: 3px;
+    margin-right: 8px;
   }
 
   .bet-container {
@@ -57,6 +56,55 @@ $btn-width: 200% - $bet-width;
     }
   }
 
+  // .btn {
+  //   display: inline-block;
+  //   text-decoration: none;
+  //   color: #fff;
+  //   background-color: #fbc02d;
+  //   padding: 20px 70px;
+  //   border: 5px solid #fed200;
+  //   background-image: linear-gradient(
+  //     0deg,
+  //     rgba(251, 158, 1, 1) 40%,
+  //     rgba(252, 187, 1, 1) 54%
+  //   );
+
+  //   border-radius: 20px;
+  //   box-shadow: 0px 6px 0px #f57f17, 0px 3px 15px rgba(0, 0, 0, 0.4),
+  //     inset 0px 1px 0px rgba(255, 255, 255, 0.3),
+  //     inset 0px 0px 3px rgba(255, 255, 255, 0.5);
+  //   transition: all 0.2s linear 0s;
+
+  //   &:focus {
+  //     outline: none;
+  //   }
+
+  //   &:hover {
+  //     transition: all 0.2s linear 0s;
+  //     background-image: linear-gradient(bottom, #ffeb3b 0%, #ff9800 75%);
+  //   }
+
+  //   &:active {
+  //     transition: all 0.2s linear 0s;
+  //     box-shadow: 0px 2px 0px #f57f17, 0px 1px 6px rgba(0, 0, 0, 0.4),
+  //       inset 0px 1px 0px rgba(255, 255, 255, 0.3),
+  //       inset 0px 0px 3px rgba(255, 255, 255, 0.5);
+  //     background-image: linear-gradient(
+  //       0deg,
+  //       rgba(252, 187, 1, 1) 40% rgba(251, 158, 1, 1) 54
+  //     );
+  //     transform: translate(0, 4px);
+  //   }
+
+  //   span {
+  //     font-family: 'Black Han Sans', sans-serif;
+  //     text-shadow: 0px 5px 1px #bf360c;
+  //     font-size: 3rem;
+  //     -webkit-text-stroke-width: 2px;
+  //     -webkit-text-stroke-color: #be4304;
+  //   }
+  // }
+
   .btn {
     text-align: center;
     text-decoration: none;
@@ -67,7 +115,6 @@ $btn-width: 200% - $bet-width;
     padding: 0.618rem 1.618rem;
     cursor: pointer;
     color: #fff;
-    letter-spacing: 5px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
     font-size: 2rem;
     transition: font-size 2s linear 0s;
