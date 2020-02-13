@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 379 137.2">
+	<defs>
+		<style>.cls-1{fill:#eb6300;}.cls-2{fill:#fed500;}.cls-3{fill:url(#linear-gradient);}.cls-4{fill:#fff;}.cls-5,.cls-6{fill:#f99800;}.cls-5{opacity:0.6;}.cls-6{opacity:0.5;}</style>
+		<linearGradient id="linear-gradient" x1="189.5" y1="59.74" x2="189.5" y2="8.69" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#fca601"/>
+			<stop offset="1" stop-color="#febd01"/>
+		</linearGradient>
+	</defs>
+	<title>button</title>
+	<g id="Layer_2" data-name="Layer 2">
+		<g id="Layer_2-2" data-name="Layer 2">
+			<path class="cls-1" d="M379,28.95v90.63c0,9.73-6.27,17.62-14,17.62H14c-7.75,0-14-7.89-14-17.62V28.95c0-9.73,6.27-17.62,14-17.62H365C372.73,11.33,379,19.22,379,28.95Z"/>
+			<path class="cls-2" d="M379,17.62v90.63c0,9.73-6.27,17.62-14,17.62H14c-7.75,0-14-7.89-14-17.62V17.62C0,7.89,6.27,0,14,0H365C372.73,0,379,7.89,379,17.62Z"/>
+			<path class="cls-3" d="M374,17.62v90.63c0,6.23-4.05,11.33-9,11.33H14c-5,0-9-5.09-9-11.33V17.62C5,11.38,9,6.29,14,6.29H365C370,6.29,374,11.39,374,17.62Z"/>
+			<path class="cls-4" d="M374.62,13.22c-.42,2.89-6.46,3.94-13.5,2.34s-12.41-5.25-12-8.14,6.46-3.94,13.5-2.34S375,10.32,374.62,13.22Z"/>
+			<path class="cls-5" d="M379,38.41v79.66c0,4.31-2.77,7.8-6.2,7.8H14c-7.74,0-14-7.89-14-17.62V90.91l5-1.75v19.08c0,6.24,4,11.33,9,11.33H370c2.19,0,4-2.26,4-5V37.14C375.68,37.55,377.35,38,379,38.41Z"/>
+			<path class="cls-6" d="M374,37.14v71.1c0,6.23-4.05,11.33-9,11.33H14c-5,0-9-5.09-9-11.33V89.16C71.52,66.07,256.2,8.61,374,37.14Z"/>
+		</g>
+	</g>
+</svg>

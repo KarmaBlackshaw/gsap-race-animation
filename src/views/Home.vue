@@ -21,25 +21,22 @@
 
       <div class="action-bar">
         <div class="bet-container action-bar__item">
-          <div class="bet bet--1" :class="{ active: userBet === 1 }" @click="placeBet(1)">
+          <div class="bet bet--1" :class="{ 'active': userBet === 1 }" @click="placeBet(1)">
             <img
               src="@/assets/bet-car-1.png"
               class="bet__img"
-              :width="userBet === 1 ? '30px' : '25px'"
             />
           </div>
-          <div class="bet bet--2" :class="{ active: userBet === 2 }" @click="placeBet(2)">
+          <div class="bet bet--2" :class="{ 'active': userBet === 2 }" @click="placeBet(2)">
             <img
               src="@/assets/bet-car-2.png"
               class="bet__img"
-              :width="userBet === 2 ? '30px' : '25px'"
             />
           </div>
-          <div class="bet bet--3" :class="{ active: userBet === 3 }" @click="placeBet(3)">
+          <div class="bet bet--3" :class="{ 'active': userBet === 3 }" @click="placeBet(3)">
             <img
               src="@/assets/bet-car-3.png"
               class="bet__img"
-              :width="userBet === 3 ? '30px' : '25px'"
             />
           </div>
         </div>
@@ -48,7 +45,12 @@
           class="btn"
           :class="isTweening ? 'btn--disabled' : 'btn--start'"
           @click="start"
-        >START</button>
+        >
+          <div class="winning-effect__text" id="winning-effect__text">
+            <h1 class="stroke-inner">START</h1>
+            <h1 class="stroke-inner-2">START</h1>
+            <h1 class="no-stroke">START</h1>
+          </div></button>
       </div>
 
       <div class="points-container">
@@ -199,6 +201,7 @@ export default {
 @import "../assets/scss/mixins";
 @import "../assets/scss/race-ground";
 @import "../assets/scss/action-bar";
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap");
 
 .parent-layout {
   position: relative;
